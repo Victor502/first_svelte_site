@@ -1,9 +1,14 @@
 <script>
-    let count = 0;
-    $: doubled = count * 2
+    import {isSignedIn, username} from '../store/store.js'
+
     function handleClick() {
-	count += 1;
-}
+        console.log('here')
+        isSignedIn.set(true)
+    }
+    function handleClickOut() {
+        isSignedIn.set(false)
+    }
+   
 </script>
 <style>
 form {
@@ -20,10 +25,14 @@ button {
     margin: 0 auto;
 }
 </style>
-
-<form>
+{#if !$isSignedIn}
+<form action >
     Name: <input type="text" />
     Password: <input type="text" />
 </form>
+{/if}
+{#if !$isSignedIn}
 <button on:click={handleClick}> Sign In</button>
-{count} <p>and doubled it</p> {doubled}
+{:else}
+<button on:click={handleClickOut}> Sign out</button>
+{/if}

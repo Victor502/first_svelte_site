@@ -1,8 +1,11 @@
 <script>
 	import Signin from "../components/Signin.svelte";
+	import { username, isSignedIn } from "../store/store.js"
+	console.log('here', $username)
+	
 </script>
 <style>
-	h1, figure, p {
+	h1, p {
 		text-align: center;
 		margin: 0 auto;
 	}
@@ -14,15 +17,15 @@
 		margin: 0 0 0.5em 0;
 	}
 
-	figure {
+	/* figure {
 		margin: 0 0 1em 0;
-	}
+	} */
 
-	img {
+	/* img {
 		width: 100%;
 		max-width: 400px;
 		margin: 0 0 1em 0;
-	}
+	} */
 
 	p {
 		margin: 1em auto;
@@ -39,12 +42,10 @@
 	<title>Sapper project template</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+{#if !$isSignedIn}
+<h1>Sign In</h1>
+{:else}
+<h1>Welcome {$username}</h1>
+{/if}
 
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
 <Signin />
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>

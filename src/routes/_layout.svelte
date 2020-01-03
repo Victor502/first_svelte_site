@@ -1,5 +1,6 @@
 <script>
 	import Nav from '../components/Nav.svelte';
+	import {isSignedIn} from '../store/store.js'
 
 	export let segment;
 </script>
@@ -14,8 +15,9 @@
 		box-sizing: border-box;
 	}
 </style>
-
+{#if $isSignedIn}
 <Nav {segment}/>
+{/if}
 
 <main>
 	<slot></slot>
